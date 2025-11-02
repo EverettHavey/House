@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | DreamHomes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>DreamHomes</h1>
+    <nav id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="houses.html">Houses</a>
+      <a href="aboutus.html" class="active">About Us</a>
+      <a href="contactus.html">Contact</a>
+    </nav>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </header>
+
+  <section class="content">
+    <h2>About DreamHomes</h2>
+    <p>
+      At DreamHomes, we connect buyers and sellers in a secure and transparent
+      real estate platform. Whether you're searching for a cozy cottage or a
+      modern mansion, we make finding your dream home simple and enjoyable.
+    </p>
+    <p>Founded in 2021, our mission is to make home ownership easier for everyone.</p>
+  </section>
+
+  <footer><p>&copy; 2025 DreamHomes. All rights reserved.</p></footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

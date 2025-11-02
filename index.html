@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | DreamHomes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>DreamHomes</h1>
+    <nav id="nav-menu">
+      <a href="index.html" class="active">Home</a>
+      <a href="houses.html">Houses</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="contactus.html">Contact</a>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>Find Your Dream Home Today</h2>
+    <p>Buy, rent, or sell with confidence. Trusted by thousands worldwide.</p>
+    <a href="houses.html" class="btn">Browse Houses</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DreamHomes. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
