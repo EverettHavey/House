@@ -1,48 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buy a House | DreamHomes</title>
-  <link rel="stylesheet" href="style.css" />
-  <script>
-    function purchase() {
-      alert("Payment Successful! Thank you for buying with DreamHomes.");
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy a Home - HOUSE Listings</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for aesthetic enhancements */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8;
+        }
+        .nav-link {
+            transition: color 0.2s, background-color 0.2s;
+        }
+        .nav-link:hover {
+            color: #10B981; /* Emerald 500 */
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#10B981', /* Emerald */
+                        'secondary': '#1F2937', /* Dark Gray */
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <header>
-    <h1>DreamHomes</h1>
-    <nav id="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="houses.html">Houses</a>
-      <a href="aboutus.html">About Us</a>
-      <a href="contactus.html">Contact</a>
-    </nav>
-    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-  </header>
+<body class="antialiased">
 
-  <section class="form">
-    <h2>Buy a House</h2>
-    <form onsubmit="purchase(); return false;">
-      <label>Name:</label><input type="text" required>
-      <label>Credit Card Number:</label><input type="number" required>
-      <label>Expiration Date:</label><input type="month" required>
-      <label>CVV:</label><input type="password" required>
-      <button type="submit" class="btn">Buy Now</button>
-    </form>
-  </section>
+    <!-- Navigation Bar -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Site Title -->
+                <a href="index.html" class="text-2xl font-extrabold text-secondary hover:text-primary transition duration-300">
+                    HOUSE <span class="text-primary">Listings</span>
+                </a>
 
-  <footer><p>&copy; 2025 DreamHomes. All rights reserved.</p></footer>
+                <!-- Desktop Menu (Hidden on mobile) -->
+                <nav class="hidden lg:flex lg:space-x-8">
+                    <a href="buy.html" class="nav-link text-primary font-medium border-b-2 border-primary">Buy</a>
+                    <a href="rent.html" class="nav-link text-gray-600 font-medium">Rent</a>
+                    <a href="sell.html" class="nav-link text-gray-600 font-medium">Sell</a>
+                    <a href="houses.html" class="nav-link text-gray-600 font-medium">Houses</a>
+                    <a href="aboutus.html" class="nav-link text-gray-600 font-medium">About Us</a>
+                    <a href="contactus.html" class="nav-link text-gray-600 font-medium">Contact</a>
+                </nav>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    hamburger.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      hamburger.classList.toggle('active');
-    });
-  </script>
+                <!-- Mobile Menu Button (Hamburger) -->
+                <button id="mobile-menu-button" class="lg:hidden p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-label="Toggle menu">
+                    <!-- Icon SVG for hamburger (closed state) -->
+                    <svg id="menu-icon-closed" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <!-- Icon SVG for close (open state) -->
+                    <svg id="menu-icon-open" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown (Hidden by default) -->
+        <div id="mobile-menu" class="hidden lg:hidden">
+            <div class="pt-2 pb-3 space-y-1 px-2">
+                <a href="buy.html" class="block rounded-md px-3 py-2 text-base font-medium text-white bg-primary">Buy</a>
+                <a href="rent.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Rent</a>
+                <a href="sell.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Sell</a>
+                <a href="houses.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Houses</a>
+                <a href="aboutus.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">About Us</a>
+                <a href="contactus.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-secondary mb-4 text-center">Your Step-by-Step Buying Guide</h1>
+        <p class="text-center text-gray-600 mb-10">We make the process of buying your first (or fifth) home simple and stress-free.</p>
+
+        <div class="space-y-12">
+            <!-- Step 1 -->
+            <div class="flex flex-col md:flex-row bg-white p-6 rounded-xl card-shadow">
+                <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                    <div class="w-12 h-12 flex items-center justify-center bg-primary text-white text-xl font-bold rounded-full">1</div>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2">Get Pre-Approved for a Loan</h2>
+                    <p class="text-gray-600">Knowing your budget is the first and most important step. A pre-approval letter shows sellers you are a serious buyer, speeding up the offer process.</p>
+                    <a href="contactus.html" class="text-primary font-medium hover:text-emerald-600 mt-2 inline-block">Connect with a Lender →</a>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex flex-col md:flex-row bg-white p-6 rounded-xl card-shadow">
+                <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                    <div class="w-12 h-12 flex items-center justify-center bg-primary text-white text-xl font-bold rounded-full">2</div>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2">Find Your Dream Home</h2>
+                    <p class="text-gray-600">Use our powerful search tools and set up listing alerts so you don't miss out on new properties that match your criteria. We'll guide you through showings.</p>
+                    <a href="houses.html" class="text-primary font-medium hover:text-emerald-600 mt-2 inline-block">Start Searching Now →</a>
+                </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="flex flex-col md:flex-row bg-white p-6 rounded-xl card-shadow">
+                <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                    <div class="w-12 h-12 flex items-center justify-center bg-primary text-white text-xl font-bold rounded-full">3</div>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2">Make an Offer</h2>
+                    <p class="text-gray-600">When you find the perfect property, your dedicated agent will help you create a competitive, market-driven offer that sellers will love.</p>
+                    <a href="contactus.html" class="text-primary font-medium hover:text-emerald-600 mt-2 inline-block">Talk to an Agent →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="mt-12 text-center bg-primary p-8 rounded-xl card-shadow text-white">
+            <h3 class="text-2xl font-bold mb-3">Ready to Take the Next Step?</h3>
+            <p class="mb-5">Our experts are here to help you every step of the way.</p>
+            <a href="contactus.html" class="inline-block bg-white text-primary font-bold py-3 px-6 rounded-full hover:bg-gray-100 transition duration-300">
+                Contact Our Buying Team
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-secondary mt-10 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 HOUSE Listings. All rights reserved. | Find your next dream home.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // --- JAVASCRIPT FOR MOBILE MENU ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconClosed = document.getElementById('menu-icon-closed');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+
+        menuButton.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            
+            if (isHidden) {
+                menuIconClosed.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+            } else {
+                menuIconClosed.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+            }
+        });
+    </script>
 </body>
 </html>

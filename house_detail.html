@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="detail-page-title">Property Detail</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for aesthetic enhancements */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8;
+        }
+        .nav-link {
+            transition: color 0.2s, background-color 0.2s;
+        }
+        .nav-link:hover {
+            color: #10B981; /* Emerald 500 */
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .icon-text {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#10B981', /* Emerald */
+                        'secondary': '#1F2937', /* Dark Gray */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Site Title -->
+                <a href="index.html" class="text-2xl font-extrabold text-secondary hover:text-primary transition duration-300">
+                    HOUSE <span class="text-primary">Listings</span>
+                </a>
+
+                <!-- Desktop Menu (Hidden on mobile) -->
+                <nav class="hidden lg:flex lg:space-x-8">
+                    <a href="buy.html" class="nav-link text-gray-600 font-medium">Buy</a>
+                    <a href="rent.html" class="nav-link text-gray-600 font-medium">Rent</a>
+                    <a href="sell.html" class="nav-link text-gray-600 font-medium">Sell</a>
+                    <a href="houses.html" class="nav-link text-primary font-medium border-b-2 border-primary">Houses</a>
+                    <a href="aboutus.html" class="nav-link text-gray-600 font-medium">About Us</a>
+                    <a href="contactus.html" class="nav-link text-gray-600 font-medium">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button (Hamburger) -->
+                <button id="mobile-menu-button" class="lg:hidden p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-label="Toggle menu">
+                    <!-- Icon SVG for hamburger (closed state) -->
+                    <svg id="menu-icon-closed" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <!-- Icon SVG for close (open state) -->
+                    <svg id="menu-icon-open" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown (Hidden by default) -->
+        <div id="mobile-menu" class="hidden lg:hidden">
+            <div class="pt-2 pb-3 space-y-1 px-2">
+                <a href="buy.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Buy</a>
+                <a href="rent.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Rent</a>
+                <a href="sell.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Sell</a>
+                <a href="houses.html" class="block rounded-md px-3 py-2 text-base font-medium text-white bg-primary">Houses</a>
+                <a href="aboutus.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">About Us</a>
+                <a href="contactus.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section: Property Detail -->
+    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+
+        <!-- Header: Title, Price, and Location -->
+        <div class="mb-6 border-b pb-4">
+            <h1 id="house-title" class="text-3xl sm:text-4xl font-extrabold text-secondary">Loading...</h1>
+            <p id="house-price" class="text-4xl font-bold text-primary mt-1">--</p>
+            <p id="house-address" class="text-gray-500 text-lg mt-1">--</p>
+        </div>
+
+        <!-- Property Media and Details (Responsive Grid) -->
+        <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+
+            <!-- Left Column: Main Image, Description, and Features (2/3 width on desktop) -->
+            <div class="lg:col-span-2">
+                
+                <!-- Main Image/Hero Section -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow mb-8">
+                    <img id="house-image" src="https://placehold.co/1000x600/CCCCCC/000000?text=Loading..." alt="Property Image" class="w-full h-96 object-cover">
+                </div>
+
+                <!-- Gallery Thumbnails (Placeholder - could be updated dynamically) -->
+                <div class="flex space-x-4 mb-8 overflow-x-auto pb-2">
+                    <img src="https://placehold.co/150x100/A78BFA/FFFFFF?text=Kitchen" alt="Kitchen" class="w-36 h-24 object-cover rounded-lg border-2 border-gray-300 hover:border-primary transition cursor-pointer">
+                    <img src="https://placehold.co/150x100/34D399/FFFFFF?text=Living+Room" alt="Living Room" class="w-36 h-24 object-cover rounded-lg border-2 border-gray-300 hover:border-primary transition cursor-pointer">
+                    <img src="https://placehold.co/150x100/FACC15/FFFFFF?text=Deck" alt="Deck" class="w-36 h-24 object-cover rounded-lg border-2 border-gray-300 hover:border-primary transition cursor-pointer">
+                    <img src="https://placehold.co/150x100/E36C5A/FFFFFF?text=Bedroom" alt="Bedroom" class="w-36 h-24 object-cover rounded-lg border-2 border-gray-300 hover:border-primary transition cursor-pointer">
+                </div>
+
+                <!-- Description -->
+                <div class="bg-white p-6 rounded-xl card-shadow mb-8">
+                    <h2 class="text-2xl font-bold text-secondary mb-4">Property Description</h2>
+                    <div id="house-description" class="text-gray-700 leading-relaxed space-y-4">
+                        <p>Loading property details...</p>
+                    </div>
+                </div>
+
+                <!-- Key Features/Amenities -->
+                <div class="bg-white p-6 rounded-xl card-shadow mb-8">
+                    <h2 class="text-2xl font-bold text-secondary mb-4">Key Features & Amenities</h2>
+                    <!-- Dynamic Features will be injected here -->
+                    <div id="house-features" class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700">
+                        <p>No features available.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Quick Facts and Inquiry Form (1/3 width on desktop) -->
+            <div class="lg:col-span-1 space-y-8">
+
+                <!-- Quick Facts Card -->
+                <div class="bg-white p-6 rounded-xl card-shadow">
+                    <h2 class="text-2xl font-bold text-secondary mb-4">Quick Facts</h2>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <span class="font-medium text-gray-600">Bedrooms:</span>
+                            <span id="fact-beds" class="font-semibold text-secondary">--</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <span class="font-medium text-gray-600">Bathrooms:</span>
+                            <span id="fact-baths" class="font-semibold text-secondary">--</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <span class="font-medium text-gray-600">Area:</span>
+                            <span id="fact-area" class="font-semibold text-secondary">-- sqft</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <span class="font-medium text-gray-600">Type:</span>
+                            <span id="fact-type" class="font-semibold text-secondary">--</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium text-gray-600">MLS #:</span>
+                            <span id="fact-mls" class="font-semibold text-secondary">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agent Contact / Inquiry Form -->
+                <div class="bg-primary p-6 rounded-xl card-shadow">
+                    <h2 class="text-2xl font-bold text-white mb-4">Inquire About This Property</h2>
+                    <form action="#" method="POST" class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Your Full Name" required class="w-full p-3 rounded-lg border-gray-300 focus:ring-secondary focus:border-secondary text-gray-800">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Email Address" required class="w-full p-3 rounded-lg border-gray-300 focus:ring-secondary focus:border-secondary text-gray-800">
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Phone Number (Optional)" class="w-full p-3 rounded-lg border-gray-300 focus:ring-secondary focus:border-secondary text-gray-800">
+                        </div>
+                        <div>
+                            <textarea placeholder="I'd like to schedule a viewing and learn more about financing options..." rows="4" required class="w-full p-3 rounded-lg border-gray-300 focus:ring-secondary focus:border-secondary text-gray-800"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-secondary text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition duration-300 shadow-md">
+                            Send Inquiry
+                        </button>
+                        <p class="text-xs text-white text-center opacity-80 pt-2">Your information will be kept confidential.</p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- --- Related Listings Section --- -->
+        <section class="mt-12 pt-8 border-t border-gray-200">
+            <h2 class="text-3xl font-extrabold text-secondary mb-6">Other Listings You Might Like</h2>
+            
+            <div id="related-listings" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Related listings will be injected here by JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-secondary mt-10 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 HOUSE Listings. All rights reserved. | Find your next dream home.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // --- JAVASCRIPT FOR MOBILE MENU ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconClosed = document.getElementById('menu-icon-closed');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+
+        menuButton.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            
+            if (isHidden) {
+                menuIconClosed.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+            } else {
+                menuIconClosed.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+            }
+        });
+
+        // --- HOUSE DATA AND DYNAMIC LOADING SCRIPT ---
+
+        // 1. Define the data for all houses
+        const allHouses = [
+            {
+                id: 1,
+                title: "Rustic Mountain Cabin",
+                price: "$189,900",
+                address: "789 Pine Forest Ln, Mountain View, CO 80101",
+                beds: 3,
+                baths: 1,
+                area: 950,
+                type: "Cabin / Single Family",
+                mls: "#CO-80101-12345",
+                image: "images/MCHouse.webp",
+                description: [
+                    "Nestled deep in the Pine Forest, this cozy cabin offers the ultimate escape. Perfect for a weekend retreat or year-round mountain living, the property boasts stunning views and immediate access to hiking trails. The rustic design features exposed wood beams, a stone fireplace, and large windows that flood the open-plan living space with natural light.",
+                    "Recently updated, the cabin includes modern plumbing and heating while retaining its charming, secluded character. Enjoy coffee on the private wraparound deck overlooking the valley. Sold as-is, fully furnished, ready for immediate occupancy."
+                ],
+                features: [
+                    "Built in 1985",
+                    "0.5 Acre Lot",
+                    "Wood Burning Fireplace",
+                    "Vaulted Ceilings",
+                    "Wraparound Deck",
+                    "New Septic System (2023)",
+                    "Paved Road Access",
+                    "Furnished Option Available"
+                ]
+            },
+            {
+                id: 2,
+                title: "Modern Suburban Family Home",
+                price: "$450,000",
+                address: "123 Willow Creek Dr, Pleasantville, CA 90210",
+                beds: 4,
+                baths: 2.5,
+                area: 2400,
+                type: "House / Single Family",
+                mls: "#CA-90210-98765",
+                image: "images/modernhouse.webp",
+                description: [
+                    "A beautifully designed and spacious family home located in the desirable Willow Creek community. This property features an open-concept main floor, a gourmet kitchen with stainless steel appliances, and a large, fenced backyard perfect for play.",
+                    "The second floor includes a master suite with a walk-in closet and a luxurious en-suite bathroom. Excellent school district and close proximity to parks and shopping."
+                ],
+                features: [
+                    "Built in 2018",
+                    "0.15 Acre Lot",
+                    "Two-Car Garage",
+                    "Central Air Conditioning",
+                    "Smart Home Ready",
+                    "Granite Countertops",
+                    "Large Back Deck",
+                    "HOA Community"
+                ]
+            },
+            {
+                id: 3,
+                title: "Downtown Loft Condo",
+                price: "$285,000",
+                address: "45 River St, Apt 10B, Metropolis, NY 10001",
+                beds: 2,
+                baths: 2,
+                area: 1100,
+                type: "Condo / Loft",
+                mls: "#NY-10001-54321",
+                image: "images/condo.webp",
+                description: [
+                    "Experience city living in this stylish, high-floor loft condo. Featuring 12-foot ceilings, exposed ductwork, and floor-to-ceiling windows with panoramic views of the skyline and river. Building amenities are top-notch.",
+                    "The unit is move-in ready with a modern kitchen and two updated bathrooms. Perfect for young professionals who want to be in the heart of the action."
+                ],
+                features: [
+                    "Built in 2005",
+                    "Central Location",
+                    "In-Unit Laundry",
+                    "24/7 Security & Concierge",
+                    "Rooftop Terrace Access",
+                    "Fitness Center",
+                    "Pet-Friendly Building",
+                    "Dedicated Parking Spot"
+                ]
+            }
+        ];
+
+        function getHouseIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            // Default to house 1 if no ID is found or if it's invalid
+            const id = parseInt(params.get('id')) || 1; 
+            const foundHouse = allHouses.find(house => house.id === id);
+            return foundHouse || allHouses[0]; // Return found house or the default (House 1)
+        }
+
+        function renderHouseDetails(house) {
+            // Update HTML Head Title
+            document.getElementById('detail-page-title').textContent = `${house.title} - Property Detail`;
+            
+            // Update Header Section
+            document.getElementById('house-title').textContent = house.title;
+            document.getElementById('house-price').textContent = house.price;
+            document.getElementById('house-address').textContent = house.address;
+
+            // Update Image
+            document.getElementById('house-image').src = house.image;
+            document.getElementById('house-image').alt = house.title;
+
+            // Update Quick Facts
+            document.getElementById('fact-beds').textContent = `${house.beds}`;
+            document.getElementById('fact-baths').textContent = `${house.baths}`;
+            document.getElementById('fact-area').textContent = `${house.area} sqft`;
+            document.getElementById('fact-type').textContent = house.type;
+            document.getElementById('fact-mls').textContent = house.mls;
+
+            // Update Description
+            const descriptionContainer = document.getElementById('house-description');
+            descriptionContainer.innerHTML = house.description.map(p => `<p class="mb-4">${p}</p>`).join('');
+
+            // Update Key Features
+            const featuresContainer = document.getElementById('house-features');
+            featuresContainer.innerHTML = house.features.map(feature => 
+                `<div class="icon-text"><span class="font-semibold text-primary mr-2">&#9679;</span> ${feature}</div>`
+            ).join('');
+        }
+
+        function renderRelatedListings(currentHouseId) {
+            const relatedContainer = document.getElementById('related-listings');
+            relatedContainer.innerHTML = ''; // Clear previous listings
+            
+            // Filter to get houses that are NOT the current one
+            const relatedHouses = allHouses.filter(house => house.id !== currentHouseId);
+
+            relatedHouses.forEach(house => {
+                // Determine the correct image for the related listing
+                let relatedImage;
+                if (house.id === 1) relatedImage = "images/MCHouse.webp";
+                else if (house.id === 2) relatedImage = "images/modernhouse.webp";
+                else relatedImage = "images/condo.webp";
+
+                const cardHTML = `
+                    <a href="house_detail.html?id=${house.id}" class="block bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <img src="${relatedImage}" alt="${house.title}" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-gray-800 truncate">${house.title}</h3>
+                            <p class="text-primary font-semibold text-lg my-1">${house.price}</p>
+                            <div class="flex items-center text-gray-600 text-sm space-x-4">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-1 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zM9 17a1 1 0 01-1-1v-1a4 4 0 00-4-4H4a1 1 0 01-1-1V5a1 1 0 011-1h12a1 1 0 011 1v5a1 1 0 01-1 1h-1a4 4 0 00-4 4v1a1 1 0 01-1 1h-2z" clip-rule="evenodd" fill-rule="evenodd"></path></svg> ${house.beds} Beds
+                                </span>
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-1 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10a8 8 0 018-8v8H2z"></path><path d="M12 2.25A7.986 7.986 0 0010 2a8 8 0 00-8 8h8V2.25z"></path></svg> ${house.baths} Baths
+                                </span>
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-1 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 9.586V6z" clip-rule="evenodd"></path></svg> ${house.area.toLocaleString()} sqft
+                                </span>
+                            </div>
+                            <p class="text-gray-500 text-xs mt-2">${house.address}</p>
+                        </div>
+                    </a>
+                `;
+                relatedContainer.innerHTML += cardHTML;
+            });
+        }
+
+
+        // Load details when the page is ready
+        window.onload = function() {
+            const house = getHouseIdFromUrl();
+            renderHouseDetails(house);
+            renderRelatedListings(house.id);
+        }
+    </script>
+</body>
+</html>

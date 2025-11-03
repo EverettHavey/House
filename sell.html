@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Your Property - HOUSE Listings</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for aesthetic enhancements */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8;
+        }
+        .nav-link {
+            transition: color 0.2s, background-color 0.2s;
+        }
+        .nav-link:hover {
+            color: #10B981; /* Emerald 500 */
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#10B981', /* Emerald */
+                        'secondary': '#1F2937', /* Dark Gray */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Site Title -->
+                <a href="index.html" class="text-2xl font-extrabold text-secondary hover:text-primary transition duration-300">
+                    HOUSE <span class="text-primary">Listings</span>
+                </a>
+
+                <!-- Desktop Menu (Hidden on mobile) -->
+                <nav class="hidden lg:flex lg:space-x-8">
+                    <a href="buy.html" class="nav-link text-gray-600 font-medium">Buy</a>
+                    <a href="rent.html" class="nav-link text-gray-600 font-medium">Rent</a>
+                    <a href="sell.html" class="nav-link text-primary font-medium border-b-2 border-primary">Sell</a>
+                    <a href="houses.html" class="nav-link text-gray-600 font-medium">Houses</a>
+                    <a href="aboutus.html" class="nav-link text-gray-600 font-medium">About Us</a>
+                    <a href="contactus.html" class="nav-link text-gray-600 font-medium">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button (Hamburger) -->
+                <button id="mobile-menu-button" class="lg:hidden p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-label="Toggle menu">
+                    <!-- Icon SVG for hamburger (closed state) -->
+                    <svg id="menu-icon-closed" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <!-- Icon SVG for close (open state) -->
+                    <svg id="menu-icon-open" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown (Hidden by default) -->
+        <div id="mobile-menu" class="hidden lg:hidden">
+            <div class="pt-2 pb-3 space-y-1 px-2">
+                <a href="buy.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Buy</a>
+                <a href="rent.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Rent</a>
+                <a href="sell.html" class="block rounded-md px-3 py-2 text-base font-medium text-white bg-primary">Sell</a>
+                <a href="houses.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Houses</a>
+                <a href="aboutus.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">About Us</a>
+                <a href="contactus.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-secondary mb-4 text-center">Sell Smarter, Not Harder.</h1>
+        <p class="text-center text-gray-600 mb-10">We connect your home with the right buyers quickly and for the best price.</p>
+
+        <!-- Valuation and CTA -->
+        <div class="bg-primary p-8 rounded-xl card-shadow text-white mb-10">
+            <h2 class="text-2xl font-bold mb-3">What is your home worth?</h2>
+            <p class="mb-5">Get a free, no-obligation valuation from a local market expert.</p>
+            <form class="flex flex-col md:flex-row gap-4">
+                <input type="text" placeholder="Enter your property address" class="flex-grow p-3 rounded-lg text-gray-800" required>
+                <button type="submit" class="bg-white text-primary font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition duration-300">
+                    Get Free Valuation
+                </button>
+            </form>
+        </div>
+
+        <!-- Selling Process Steps -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <!-- Step 1 -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-yellow-500 rounded-full text-white text-3xl font-bold">1</div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Preparation</h3>
+                <p class="text-gray-600">We advise on staging, minor repairs, and professional photography to make your house shine.</p>
+            </div>
+            <!-- Step 2 -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-yellow-500 rounded-full text-white text-3xl font-bold">2</div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Marketing</h3>
+                <p class="text-gray-600">Your listing reaches millions of potential buyers across all major platforms, maximizing visibility.</p>
+            </div>
+            <!-- Step 3 -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-yellow-500 rounded-full text-white text-3xl font-bold">3</div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Closing</h3>
+                <p class="text-gray-600">We handle the negotiations, paperwork, and final steps to ensure a smooth, profitable close.</p>
+            </div>
+        </div>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-secondary mt-10 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 HOUSE Listings. All rights reserved. | Find your next dream home.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // --- JAVASCRIPT FOR MOBILE MENU ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconClosed = document.getElementById('menu-icon-closed');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+
+        menuButton.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            
+            if (isHidden) {
+                menuIconClosed.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+            } else {
+                menuIconClosed.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

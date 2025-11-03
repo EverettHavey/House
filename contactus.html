@@ -1,42 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | DreamHomes</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - HOUSE Listings</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for aesthetic enhancements */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8;
+        }
+        .nav-link {
+            transition: color 0.2s, background-color 0.2s;
+        }
+        .nav-link:hover {
+            color: #10B981; /* Emerald 500 */
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .map-placeholder {
+            min-height: 300px;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#10B981', /* Emerald */
+                        'secondary': '#1F2937', /* Dark Gray */
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <header>
-    <h1>DreamHomes</h1>
-    <nav id="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="houses.html">Houses</a>
-      <a href="aboutus.html">About Us</a>
-      <a href="contactus.html" class="active">Contact</a>
-    </nav>
-    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-  </header>
+<body class="antialiased">
 
-  <section class="form">
-    <h2>Contact Us</h2>
-    <form>
-      <label>Name:</label><input type="text" required>
-      <label>Email:</label><input type="email" required>
-      <label>Message:</label><textarea required></textarea>
-      <button type="submit" class="btn">Send Message</button>
-    </form>
-  </section>
+    <!-- Navigation Bar (Identical to house_detail.html) -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Site Title -->
+                <a href="index.html" class="text-2xl font-extrabold text-secondary hover:text-primary transition duration-300">
+                    HOUSE <span class="text-primary">Listings</span>
+                </a>
 
-  <footer><p>&copy; 2025 DreamHomes. All rights reserved.</p></footer>
+                <!-- Desktop Menu (Hidden on mobile) -->
+                <nav class="hidden lg:flex lg:space-x-8">
+                    <a href="buy.html" class="nav-link text-gray-600 font-medium">Buy</a>
+                    <a href="rent.html" class="nav-link text-gray-600 font-medium">Rent</a>
+                    <a href="sell.html" class="nav-link text-gray-600 font-medium">Sell</a>
+                    <a href="houses.html" class="nav-link text-gray-600 font-medium">Houses</a>
+                    <a href="aboutus.html" class="nav-link text-gray-600 font-medium">About Us</a>
+                    <a href="contactus.html" class="nav-link text-primary font-medium border-b-2 border-primary">Contact</a>
+                </nav>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    hamburger.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      hamburger.classList.toggle('active');
-    });
-  </script>
+                <!-- Mobile Menu Button (Hamburger) -->
+                <button id="mobile-menu-button" class="lg:hidden p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary" aria-label="Toggle menu">
+                    <!-- Icon SVG for hamburger (closed state) -->
+                    <svg id="menu-icon-closed" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <!-- Icon SVG for close (open state) -->
+                    <svg id="menu-icon-open" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown (Hidden by default) -->
+        <div id="mobile-menu" class="hidden lg:hidden">
+            <div class="pt-2 pb-3 space-y-1 px-2">
+                <a href="buy.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Buy</a>
+                <a href="rent.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Rent</a>
+                <a href="sell.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Sell</a>
+                <a href="houses.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">Houses</a>
+                <a href="aboutus.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary">About Us</a>
+                <a href="contactus.html" class="block rounded-md px-3 py-2 text-base font-medium text-white bg-primary">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section: Contact Form & Info -->
+    <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+
+        <h1 class="text-4xl font-extrabold text-secondary text-center mb-4">Get In Touch</h1>
+        <p class="text-xl text-gray-600 text-center mb-10">We're here to help you find your dream home!</p>
+
+        <div class="grid lg:grid-cols-2 gap-12">
+            
+            <!-- Column 1: Contact Form -->
+            <div class="bg-white p-8 rounded-xl card-shadow">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3">Send Us a Message</h2>
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                        <select id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <option>General Inquiry</option>
+                            <option>Schedule a Showing</option>
+                            <option>Property Appraisal</option>
+                            <option>Feedback</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-emerald-600 transition duration-300 transform hover:scale-[1.01] shadow-lg">
+                        Submit Inquiry
+                    </button>
+                </form>
+            </div>
+
+            <!-- Column 2: Office Info & Map -->
+            <div class="space-y-8">
+                <!-- Office Information -->
+                <div class="bg-white p-8 rounded-xl card-shadow">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3">Our Office</h2>
+                    <div class="space-y-4 text-gray-700">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <div>
+                                <p class="font-semibold">Address:</p>
+                                <p>101 Realty Street, Suite 500, Cityland, State 12345</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <div>
+                                <p class="font-semibold">Phone:</p>
+                                <p>(555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-primary flex-shrink-0 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path></svg>
+                            <div>
+                                <p class="font-semibold">Email:</p>
+                                <p>info@houselistings.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Placeholder -->
+                <div class="bg-gray-200 rounded-xl card-shadow text-center flex items-center justify-center map-placeholder">
+                    <p class="text-gray-500 font-bold">Map Embed Placeholder</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message Box (For alerts/confirmations) -->
+        <div id="message-box" class="fixed top-4 right-4 bg-yellow-400 text-gray-900 p-4 rounded-lg shadow-xl hidden transition-opacity duration-300 z-[100]">
+            <!-- Message content goes here -->
+        </div>
+
+    </main>
+
+    <!-- Footer (Identical to house_detail.html) -->
+    <footer class="bg-secondary mt-10 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 HOUSE Listings. All rights reserved. | Find your next dream home.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // --- JAVASCRIPT FOR MOBILE MENU AND MESSAGE BOX ---
+
+        // 1. Mobile Menu Toggle
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconClosed = document.getElementById('menu-icon-closed');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+
+        menuButton.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            
+            // Toggle icons based on menu visibility
+            if (isHidden) {
+                menuIconClosed.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+            } else {
+                menuIconClosed.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+            }
+        });
+
+        // 2. Custom Message Box (Replaces alert/confirm)
+        const messageBox = document.getElementById('message-box');
+        let messageTimeout;
+
+        function showMessage(message) {
+            // Clear any existing timeout
+            if (messageTimeout) {
+                clearTimeout(messageTimeout);
+            }
+
+            // Set content and display
+            messageBox.textContent = message;
+            messageBox.classList.remove('hidden');
+            messageBox.classList.add('opacity-100');
+
+            // Hide after 5 seconds
+            messageTimeout = setTimeout(() => {
+                messageBox.classList.remove('opacity-100');
+                messageBox.classList.add('opacity-0');
+
+                // Fully hide after transition (300ms defined in CSS transition)
+                setTimeout(() => {
+                    messageBox.classList.add('hidden');
+                }, 300); // Wait for fade-out to complete
+            }, 5000);
+        }
+
+        // 3. Contact Form Submission Handler
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // In a real application, you would send this data to a server here.
+            showMessage('Thank you! Your message has been sent successfully. We will be in touch soon.');
+            this.reset(); // Clear the form
+        });
+    </script>
 </body>
 </html>
+
